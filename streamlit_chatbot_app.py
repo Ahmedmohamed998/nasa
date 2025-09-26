@@ -271,7 +271,20 @@ class ExoplanetChatbot:
     def generate_response(self, query: str, context_chunks: List[Dict[str, Any]], language: str = "Auto") -> str:
         """Generate response using Gemini with automatic language detection"""
         if not context_chunks:
-            return "I don't have enough information to answer your question. Please make sure the vector database is built properly with your project documents."
+            # Even without context, try to provide helpful information for exoplanet-related questions
+            fallback_prompt = f"""You are a friendly assistant for an exoplanet detection project. The user asked: "{query}"
+
+Since I don't have specific project documents loaded, please provide helpful general information if the question is related to exoplanets, space, or astronomy. If it's unrelated, politely redirect to exoplanet topics.
+
+Be friendly and encouraging. If you provide general information, mention that this is general knowledge and not from the specific project documents.
+
+Response:"""
+            
+            try:
+                response = self.model.generate_content(fallback_prompt)
+                return response.text
+            except Exception as e:
+                return f"I don't have enough information to answer your question. Please make sure the vector database is built properly with your project documents. Error: {str(e)}"
         
         if language == "Auto":
             detected_language = self.detect_query_language(query)
@@ -297,9 +310,13 @@ Instructions:
 - Be friendly, conversational, and engaging
 - Give concise, helpful answers without overwhelming the user with too much information at once
 - If the user asks a broad question, give a brief overview and invite them to ask for more specific details
-- Use only the provided context for your answer
-- If you cannot find sufficient information in the context, state that clearly
-- Be encouraging and make the user feel welcome to ask more questions
+
+For answering questions:
+- FIRST try to use the provided context from project documents
+- If the question is related to exoplanets, space, or astronomy but not covered in the project docs, you can use your general knowledge to provide helpful information
+- If the question is completely unrelated to exoplanets/astronomy, politely redirect to project-related topics
+- Always be encouraging and make the user feel welcome to ask more questions
+- If you use general knowledge, mention that this is general information and not from the project documents
 
 Response:"""
         
@@ -650,11 +667,27 @@ def main():
                     
                 else:
                     search_placeholder.empty()
-                    error_msg = "❌ No relevant context found. The database might be empty or the search failed."
-                    st.error(error_msg)
+                    # Try to provide a helpful response even without context
+                    fallback_response = st.session_state.chatbot.generate_response(prompt, [], language)
+                    
+                    with response_container:
+                        st.write(fallback_response)
+                        
+                        total_time = time.time() - start_time
+                        st.markdown(f"""
+                        <div class="performance-metrics">
+                            ⚡ Response time: {total_time:.2f}s (Search: {search_time:.2f}s, Generation: {total_time - search_time:.2f}s)
+                        </div>
+                        """, unsafe_allow_html=True)
+                    
                     st.session_state.chat_history.append({
                         "role": "assistant", 
-                        "content": error_msg
+                        "content": fallback_response,
+                        "performance": {
+                            "total_time": total_time,
+                            "search_time": search_time,
+                            "generation_time": total_time - search_time
+                        }
                     })
         else:
             st.error("Please wait for the chatbot to initialize first.")
