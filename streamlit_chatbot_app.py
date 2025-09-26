@@ -283,7 +283,7 @@ class ExoplanetChatbot:
             for chunk in context_chunks[:3]
         ])
         
-        prompt = f"""You are an intelligent assistant specialized in the "A World Away: Hunting for Exoplanets with AI" project from NASA Space Apps Challenge 2025.
+        prompt = f"""You are a friendly and helpful assistant for the "A World Away: Hunting for Exoplanets with AI" project from NASA Space Apps Challenge 2025.
 
 Available context from project documents:
 {context}
@@ -294,10 +294,12 @@ Instructions:
 - Detect the language of the user's question and respond in the SAME language
 - If the question is in Arabic, respond in Arabic
 - If the question is in English, respond in English
-- Be accurate and detailed in your response
+- Be friendly, conversational, and engaging
+- Give concise, helpful answers without overwhelming the user with too much information at once
+- If the user asks a broad question, give a brief overview and invite them to ask for more specific details
 - Use only the provided context for your answer
 - If you cannot find sufficient information in the context, state that clearly
-- Maintain a professional and helpful tone
+- Be encouraging and make the user feel welcome to ask more questions
 
 Response:"""
         
@@ -587,15 +589,6 @@ def main():
     for message in st.session_state.chat_history:
         with st.chat_message(message["role"]):
             st.write(message["content"])
-            
-            if message["role"] == "assistant" and "sources" in message:
-                with st.expander("📚 Sources used"):
-                    for i, source in enumerate(message["sources"]):
-                        st.write(f"**{i+1}. {source['source']}** (Relevance: {source['relevance']:.2f})")
-                        st.write(f"Language: {source['language']}")
-                        st.write(f"Preview: {source['preview']}")
-                        if i < len(message["sources"]) - 1:
-                            st.divider()
     
 
     if language == "Auto":
@@ -645,27 +638,9 @@ def main():
                         </div>
                         """, unsafe_allow_html=True)
                     
-                    sources_info = []
-                    for chunk in context_chunks[:3]:
-                        sources_info.append({
-                            "source": chunk['metadata']['source'],
-                            "language": chunk['metadata']['language'],
-                            "relevance": 1 - chunk['distance'],
-                            "preview": chunk['content'][:200] + "..."
-                        })
-                    
-                    with st.expander("📚 Sources used in this response"):
-                        for i, source in enumerate(sources_info):
-                            st.write(f"**{i+1}. {source['source']}** (Relevance: {source['relevance']:.2f})")
-                            st.write(f"Language: {source['language']}")
-                            st.write(f"Preview: {source['preview']}")
-                            if i < len(sources_info) - 1:
-                                st.divider()
-                    
                     st.session_state.chat_history.append({
                         "role": "assistant", 
                         "content": response,
-                        "sources": sources_info,
                         "performance": {
                             "total_time": total_time,
                             "search_time": search_time,
