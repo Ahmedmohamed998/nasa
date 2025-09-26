@@ -9,3 +9,4 @@ tensorflow==2.20.0
 scikit-learn>=1.0.0
 matplotlib
 seaborn
+plotly
