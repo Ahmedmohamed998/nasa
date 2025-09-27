@@ -1,0 +1,204 @@
+[
+  {
+    "timestamp": "2025-09-26T15:00:06.851947",
+    "models_trained": [
+      "random_forest"
+    ],
+    "best_model": "random_forest",
+    "best_cv_score": 0.9143242631150346,
+    "dataset_shape": [
+      8054,
+      18
+    ],
+    "feature_columns": [
+      "ra",
+      "fpflag_ec",
+      "fpflag_co",
+      "fpflag_ss",
+      "fpflag_nt",
+      "duration",
+      "orbital_period",
+      "dec",
+      "stellar_mag",
+      "insolation",
+      "equilibrium_temp",
+      "impact",
+      "stellar_logg",
+      "stellar_radius",
+      "model_snr",
+      "planet_radius",
+      "transit_depth",
+      "stellar_teff"
+    ]
+  },
+  {
+    "timestamp": "2025-09-26T15:02:37.544069",
+    "models_trained": [
+      "logistic_regression",
+      "lightgbm"
+    ],
+    "best_model": "lightgbm",
+    "best_cv_score": 0.9154097740556741,
+    "dataset_shape": [
+      8054,
+      18
+    ],
+    "feature_columns": [
+      "ra",
+      "fpflag_ec",
+      "fpflag_co",
+      "fpflag_ss",
+      "fpflag_nt",
+      "duration",
+      "orbital_period",
+      "dec",
+      "stellar_mag",
+      "insolation",
+      "equilibrium_temp",
+      "impact",
+      "stellar_logg",
+      "stellar_radius",
+      "model_snr",
+      "planet_radius",
+      "transit_depth",
+      "stellar_teff"
+    ]
+  },
+  {
+    "timestamp": "2025-09-26T15:03:30.291403",
+    "models_trained": [
+      "random_forest"
+    ],
+    "best_model": "lightgbm",
+    "best_cv_score": 0.9154097740556741,
+    "dataset_shape": [
+      8054,
+      18
+    ],
+    "feature_columns": [
+      "ra",
+      "fpflag_ec",
+      "fpflag_co",
+      "fpflag_ss",
+      "fpflag_nt",
+      "duration",
+      "orbital_period",
+      "dec",
+      "stellar_mag",
+      "insolation",
+      "equilibrium_temp",
+      "impact",
+      "stellar_logg",
+      "stellar_radius",
+      "model_snr",
+      "planet_radius",
+      "transit_depth",
+      "stellar_teff"
+    ]
+  },
+  {
+    "timestamp": "2025-09-26T15:07:27.341281",
+    "models_trained": [
+      "logistic_regression",
+      "random_forest",
+      "extra_trees",
+      "svm",
+      "knn",
+      "naive_bayes",
+      "mlp",
+      "xgboost",
+      "lightgbm"
+    ],
+    "best_model": "lightgbm",
+    "best_cv_score": 0.9154097740556741,
+    "dataset_shape": [
+      8054,
+      18
+    ],
+    "feature_columns": [
+      "ra",
+      "fpflag_ec",
+      "fpflag_co",
+      "fpflag_ss",
+      "fpflag_nt",
+      "duration",
+      "orbital_period",
+      "dec",
+      "stellar_mag",
+      "insolation",
+      "equilibrium_temp",
+      "impact",
+      "stellar_logg",
+      "stellar_radius",
+      "model_snr",
+      "planet_radius",
+      "transit_depth",
+      "stellar_teff"
+    ]
+  },
+  {
+    "timestamp": "2025-09-26T15:27:59.631817",
+    "models_trained": [
+      "gradient_boosting"
+    ],
+    "best_model": "gradient_boosting",
+    "best_cv_score": 0.9158758534951742,
+    "dataset_shape": [
+      8054,
+      18
+    ],
+    "feature_columns": [
+      "ra",
+      "fpflag_ec",
+      "fpflag_co",
+      "fpflag_ss",
+      "fpflag_nt",
+      "duration",
+      "orbital_period",
+      "dec",
+      "stellar_mag",
+      "insolation",
+      "equilibrium_temp",
+      "impact",
+      "stellar_logg",
+      "stellar_radius",
+      "model_snr",
+      "planet_radius",
+      "transit_depth",
+      "stellar_teff"
+    ]
+  },
+  {
+    "timestamp": "2025-09-26T15:37:42.450546",
+    "models_trained": [
+      "random_forest",
+      "gradient_boosting"
+    ],
+    "best_model": "gradient_boosting",
+    "best_cv_score": 0.9158758534951742,
+    "dataset_shape": [
+      8054,
+      18
+    ],
+    "feature_columns": [
+      "ra",
+      "fpflag_ec",
+      "fpflag_co",
+      "fpflag_ss",
+      "fpflag_nt",
+      "duration",
+      "orbital_period",
+      "dec",
+      "stellar_mag",
+      "insolation",
+      "equilibrium_temp",
+      "impact",
+      "stellar_logg",
+      "stellar_radius",
+      "model_snr",
+      "planet_radius",
+      "transit_depth",
+      "stellar_teff"
+    ]
+  }
+]
