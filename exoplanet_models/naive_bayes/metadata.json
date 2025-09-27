@@ -1,0 +1,35 @@
+{
+  "model_name": "naive_bayes",
+  "feature_columns": [
+    "ra",
+    "fpflag_ec",
+    "fpflag_co",
+    "fpflag_ss",
+    "fpflag_nt",
+    "duration",
+    "orbital_period",
+    "dec",
+    "stellar_mag",
+    "insolation",
+    "equilibrium_temp",
+    "impact",
+    "stellar_logg",
+    "stellar_radius",
+    "model_snr",
+    "planet_radius",
+    "transit_depth",
+    "stellar_teff"
+  ],
+  "performance": {
+    "accuracy": 0.5884543761638734,
+    "f1_score": 0.5266079071125992,
+    "cv_mean": 0.586372145579654,
+    "cv_std": 0.007428087670926228
+  },
+  "training_timestamp": "2025-09-26T15:07:27.531011",
+  "classes": [
+    0,
+    1,
+    2
+  ]
+}
